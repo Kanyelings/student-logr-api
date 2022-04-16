@@ -9,6 +9,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -34,5 +36,15 @@ public class Intern {
 
 	@Column(name = "phone", length = 16)
 	private String phone;
+
+	/**
+	 * One intern is associated with one or more internship terms
+	 */
+	@OneToMany(mappedBy = "intern", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<InternshipTerm> internshipTerms = new ArrayList<>();
+
+	@OneToOne(cascade = CascadeType.ALL, optional = false, orphanRemoval = true)
+	@JoinColumn(name = "logr_user_logruser_id", nullable = false)
+	private LogrUser logrUser;
 
 }

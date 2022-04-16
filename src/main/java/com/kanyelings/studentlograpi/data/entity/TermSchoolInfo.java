@@ -26,4 +26,7 @@ public class TermSchoolInfo {
 	@Column(name = "academic_year", nullable = false, length = 12)
 	private String academicYear;
 
+	@OneToOne(mappedBy = "termSchoolInfo", cascade = CascadeType.ALL, optional = false, orphanRemoval = true)
+	private InternshipTerm internshipTerm;
+
 }

@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -22,5 +24,12 @@ public class LogBook {
 
 	@Column(name = "week_number", nullable = false)
 	private Integer weekNumber;
+
+	@ManyToOne(cascade = CascadeType.ALL, optional = false)
+	@JoinColumn(name = "internship_term_id", nullable = false)
+	private InternshipTerm internshipTerm;
+
+	@OneToMany(mappedBy = "logBook", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<LogBookDayRecord> logBookDayRecords = new ArrayList<>();
 
 }

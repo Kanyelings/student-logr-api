@@ -24,4 +24,8 @@ public class LogBookDayRecord {
 	@Column(name = "activity")
 	private String activity;
 
+	@ManyToOne(cascade = CascadeType.ALL, optional = false)
+	@JoinColumn(name = "log_book_logbook_id", nullable = false)
+	private LogBook logBook;
+
 }

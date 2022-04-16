@@ -35,4 +35,7 @@ public class TermCompanyInfo {
 	@Column(name = "supervisor", nullable = false, length = 64)
 	private String supervisor;
 
+	@OneToOne(mappedBy = "termCompanyInfo", cascade = CascadeType.ALL, optional = false, orphanRemoval = true)
+	private InternshipTerm internshipTerm;
+
 }
