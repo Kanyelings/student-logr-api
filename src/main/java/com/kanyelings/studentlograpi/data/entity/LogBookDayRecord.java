@@ -5,16 +5,23 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "logbookdayrecord")
+@Table(name = "logbook_day_record")
 public class LogBookDayRecord {
 	@Id
-	 private Long logbookdayrecordId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long recordId;
+
+	@Column(name = "date", nullable = false)
+	private Date date;
+
+	@Column(name = "activity")
+	private String activity;
+
 }
