@@ -9,5 +9,4 @@ class StudentLogrApiApplicationTests {
     @Test
     void contextLoads() {
     }
-
 }

@@ -5,16 +5,37 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "termcompanyinfo")
+@Table(name = "term_company_info")
 public class TermCompanyInfo {
 	@Id
-	 private Long termcompanyinfoId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long companyId;
+
+	@Column(name = "name", nullable = false, length = 32)
+	private String name;
+
+	@Column(name = "address", nullable = false, length = 128)
+	private String address;
+
+	@Column(name = "phone", nullable = false, length = 16)
+	private String phone;
+
+	@Column(name = "department", nullable = false, length = 32)
+	private String department;
+
+	@Column(name = "email", nullable = false, length = 32)
+	private String email;
+
+	@Column(name = "supervisor", nullable = false, length = 64)
+	private String supervisor;
+
+	@OneToOne(mappedBy = "termCompanyInfo", cascade = CascadeType.ALL, optional = false, orphanRemoval = true)
+	private InternshipTerm internshipTerm;
+
 }

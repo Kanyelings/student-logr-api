@@ -1,21 +1,28 @@
 package com.kanyelings.studentlograpi.data.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
+@Builder
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "logruser")
+@Table(name = "logr_user")
 public class LogrUser {
 	@Id
-	 private Long logruserId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long userId;
+
+	@Column(name = "email", nullable = false, unique = true, length = 32)
+	private String email;
+
+	@Column(name = "password", nullable = false)
+	private String password;
+
+	@OneToOne(mappedBy = "logrUser", orphanRemoval = true)
+	private Intern intern;
+
 }
